@@ -93,11 +93,34 @@ app.get('/game/:id',auth, (req,res) => {
 
         let id = parseInt(req.params.id);
 
+        let hateoas = [
+            {
+                href: "http://localhost:8080/game"+id,
+                method: "DELETE",
+                rel: 'delete_game'
+            },
+            {
+                href: "http://localhost:8080/game"+id,
+                method: "PUT",
+                rel: 'edit_game'
+            },
+            {
+                href: "http://localhost:8080/game"+id,
+                method: "GET",
+                rel: 'get_game'
+            },
+            {
+                href: "http://localhost:8080/auth",
+                method: "POST",
+                rel: 'login'
+            }
+        ]
+        
         let game = fake_db.games.find(g => g.id == id);
 
         if(game != undefined){
             res.statusCode = 200;
-            res.json(game);
+            res.json({game, hateoas});
         }else{
             res.sendStatus(404);
         }
