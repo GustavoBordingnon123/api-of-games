@@ -95,17 +95,17 @@ app.get('/game/:id',auth, (req,res) => {
 
         let hateoas = [
             {
-                href: "http://localhost:8080/game"+id,
+                href: "http://localhost:8080/game/"+id,
                 method: "DELETE",
                 rel: 'delete_game'
             },
             {
-                href: "http://localhost:8080/game"+id,
+                href: "http://localhost:8080/game/"+id,
                 method: "PUT",
                 rel: 'edit_game'
             },
             {
-                href: "http://localhost:8080/game"+id,
+                href: "http://localhost:8080/game/"+id,
                 method: "GET",
                 rel: 'get_game'
             },
